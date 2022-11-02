@@ -1,11 +1,15 @@
-public class Board {
-    public void showBoard(){
+import java.util.Scanner;
 
+public class Board {
+
+
+
+    public void showBoard(char[][] board){
 
 //tablica dwuwymiarowa
-        char[][] board = {{' ', ' ', ' '},
-                         {' ', ' ', ' '},
-                         {' ', ' ', ' '}};
+//        char[][] board = {{' ', ' ', ' '},
+//                         {' ', ' ', ' '},
+//                         {' ', ' ', ' '}};
 
 //        board[0][0] = 'X';
 //        board[1][1] = 'X';
