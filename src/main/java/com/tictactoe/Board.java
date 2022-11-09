@@ -39,13 +39,13 @@ public class Board {
         board[line][col] = playerSymbol;
         return true;
     }
-    public boolean playComputer(char[][] board, char computerSymbol, int size) {
+    public boolean playComputer(char[][] board, char computerSymbol, int size) throws WrongMoveException {
         Random random = new Random();
         int line = random.nextInt(size);
         int col = random.nextInt(size);
         boolean correctMove = board[line][col] == 0;
         if (!correctMove) {
-            return false;
+            throw new WrongMoveException();
         }
         board[line][col] = computerSymbol;
         return true;

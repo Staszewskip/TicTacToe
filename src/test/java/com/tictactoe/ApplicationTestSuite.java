@@ -130,7 +130,7 @@ public class ApplicationTestSuite {
     }
 
     @Test
-    void checkWrongMoveException() throws Board.WrongMoveException {
+    void checkWrongMoveException()  {
 //        given
         Board boardObj = new Board();
         char[][] board = new char [3][3];
@@ -140,7 +140,7 @@ public class ApplicationTestSuite {
 //        when
         boardObj.playComputer(board,computerSymbol,3);
 //        then
-        Assertions.assertThrows(Board.WrongMoveException.class, () -> boardObj.playComputer(board, computerSymbol,3) );
+        Assertions.assertThrows(WrongMoveException.class, () -> boardObj.playComputer(board, computerSymbol,3) );
     }
 
 }
