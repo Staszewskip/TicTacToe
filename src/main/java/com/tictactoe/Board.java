@@ -9,8 +9,8 @@ public class Board {
 
     public void showBoard(char[][] board) {
         System.out.print("\t");
-        for (int i = 0; i< board.length; i++) {
-            System.out.print(i +"|" );
+        for (int i = 0; i < board.length; i++) {
+            System.out.print(i + "|");
         }
         System.out.println();
 
@@ -23,10 +23,10 @@ public class Board {
         }
     }
 
-    public boolean play(char[][] board, char currentSymbol) throws WrongMoveException {
+    public boolean play(char[][] board, char playerSymbol) throws WrongMoveException {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Twoj symbol " + currentSymbol);
+        System.out.println("Twoj symbol " + playerSymbol);
         System.out.println("Podaj indeks wiersza");
         int line = scan.nextInt();
         System.out.println("Podaj indeks kolumny");
@@ -39,6 +39,7 @@ public class Board {
         board[line][col] = playerSymbol;
         return true;
     }
+
     public boolean playComputer(char[][] board, char computerSymbol, int size) throws WrongMoveException {
         Random random = new Random();
         int line = random.nextInt(size);
@@ -51,31 +52,27 @@ public class Board {
         return true;
     }
 
-    public boolean checkLines(char[][] board, char currentSymbol) {
-//        po przejściu wewnętrznej pętli (sprawdzającej kolumny) zewnętrzna pętla przejdzie do następnego wiersza
+    public boolean checkLines(char[][] board, char currentSymbol, int nbOfSymbolsToWin) {
+
         for (int line = 0; line < board.length; line++) {
             boolean win = true;
-//            sprawdzamy czy w kolejnych kolumnach jest znak inny niż obecny symbol.
-//            jeżeli tak to przerywamy działanie pętli (break)
-            for (int col = 0; col < board.length; col++) {
-                if (board[line][col] != currentSymbol) {
-                    win = false;
-                    break;
+            for (int col = 0; col < nbOfSymbolsToWin; nbOfSymbolsToWin++, col++) {
+                    if (board[line][col] != currentSymbol) {
+                        win = false;
+                        break;
+                    }
                 }
-            }
             if (win) {
                 return true;
             }
         }
-//        jeżeli metoda nie przerwała działania przez cały czas iteracji pętli to znaczy, że nie ma zwycięskiej kombinacji
         return false;
     }
+
     public boolean checkColumns(char[][] board, char currentSymbol) {
 
         for (int col = 0; col < board.length; col++) {
             boolean win = true;
-//            sprawdzamy czy w kolejnych kolumnach jest znak inny niż obecny symbol.
-//            jeżeli tak to przerywamy działanie pętli (break)
             for (int line = 0; line < board.length; line++) {
                 if (board[line][col] != currentSymbol) {
                     win = false;
@@ -89,24 +86,26 @@ public class Board {
 //        jeżeli metoda nie przerwała działania przez cały czas iteracji pętli to znaczy, że nie ma zwycięskiej kombinacji
         return false;
     }
-    public boolean checkDiagonal1(char[][] board, char currentSymbol){
-        for (int i=0; i< board.length; i++) {
-            if (board[i][i] != currentSymbol){
-            return false;
-            }
-        }
-        return true;
-    }
-    public boolean checkDiagonal2(char[][] board, char currentSymbol){
-        for (int i=2, j = 0; j<board.length; i--, j++) {
-            if (board[i][j] != currentSymbol){
+
+    public boolean checkDiagonal1(char[][] board, char currentSymbol) {
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][i] != currentSymbol) {
                 return false;
             }
         }
         return true;
     }
 
-    public static class WrongMoveException extends Exception{
+    public boolean checkDiagonal2(char[][] board, char currentSymbol) {
+        for (int i = 2, j = 0; j < board.length; i--, j++) {
+            if (board[i][j] != currentSymbol) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static class WrongMoveException extends Exception {
     }
 
     public static class ExceptionRunner {

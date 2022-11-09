@@ -6,6 +6,7 @@ public class Application {
     public static void main(String[] args) throws Board.WrongMoveException {
         Board boardObj = new Board();
         int size = 0;
+        int nbOfSymbolsToWin = 0;
         char currentSymbol = 'X';
         boolean ifContinue = true;
         int counterMove = 0;
@@ -18,8 +19,10 @@ public class Application {
         int choice = scan.nextInt();
         if (choice == 1) {
             size = 3;
+            nbOfSymbolsToWin = 3;
         } else if (choice == 2) {
             size = 10;
+            nbOfSymbolsToWin = 5;
         }
         char[][] board = new char[size][size];
 
@@ -36,7 +39,7 @@ public class Application {
             }
 
             if (correctPlayerMove || correctComputerMove) {
-                boolean winLines = boardObj.checkLines(board, currentSymbol);
+                boolean winLines = boardObj.checkLines(board, currentSymbol, nbOfSymbolsToWin);
                 boolean winColumns = boardObj.checkColumns(board, currentSymbol);
                 boolean winDiagonal1 = boardObj.checkDiagonal1(board, currentSymbol);
                 boolean winDiagonal2 = boardObj.checkDiagonal2(board, currentSymbol);
