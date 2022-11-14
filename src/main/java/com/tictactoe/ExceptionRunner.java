@@ -1,14 +1,18 @@
 package com.tictactoe;
 
 public class ExceptionRunner {
-    public boolean play(char[][] board,char playerSymbol)  {
-        Board boardObj = new Board();
-        try {
-            boardObj.play(board, playerSymbol);
-        } catch (Board.WrongMoveException e) {
-            System.out.println("Niepoprawny ruch. Sprobuj ponownie");
-            return false;
-        }
-        return true;
-    }
+//    public boolean correctMove(char[][] board, int line, int col) {
+//        Board boardObj = new Board();
+//
+//        try {
+//            boardObj.correctMove(board, line, col);
+//        } catch (WrongMoveException e) {
+//            System.out.println("Niepoprawny ruch. Sprobuj ponownie");
+//            return false;
+//        } finally {
+//            System.out.println();
+//        }
+//        return true;
+//    }
 }
+

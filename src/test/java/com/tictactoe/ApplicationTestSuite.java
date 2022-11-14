@@ -11,17 +11,18 @@ public class ApplicationTestSuite {
         Board boardObj = new Board();
         char[][] board = new char [10][10];
         char currentSymbol = 'O';
-        int nbOfSymbolsToWin = 5;
-        board[0][0] = currentSymbol;
-        board[0][1] = currentSymbol;
-        board[0][3] = currentSymbol;
-        board[0][4] = currentSymbol;
-        board[0][5] = currentSymbol;
+        char computerSymbol = 'X';
+        board[0][0] = computerSymbol;
+        board[1][4] = currentSymbol;
+        board[1][5] = currentSymbol;
+        board[1][6] = currentSymbol;
+        board[1][7] = currentSymbol;
+        board[1][8] = currentSymbol;
+        board[1][9] = computerSymbol;
 //        when
-        boolean win = boardObj.checkLines(board, currentSymbol, nbOfSymbolsToWin);
+        boolean win = boardObj.checkLines(board, currentSymbol,5);
 //        then
         Assertions.assertTrue(win);
-
     }
     @Test
     void checkColumnsO() {
@@ -29,12 +30,13 @@ public class ApplicationTestSuite {
         Board boardObj = new Board();
         char[][] board = new char [3][3];
         char currentSymbol = 'O';
+        int nbOfSymbolsToWin = 3;
         board[0][0] = currentSymbol;
         board[1][0] = currentSymbol;
         board[2][0] = currentSymbol;
 
 //        when
-        boolean win = boardObj.checkColumns(board, currentSymbol);
+        boolean win = boardObj.checkColumns(board, currentSymbol,nbOfSymbolsToWin);
 //        then
         Assertions.assertTrue(win);
 
@@ -43,13 +45,16 @@ public class ApplicationTestSuite {
     void checkDiagonal2WithO(){
 //        given
         Board boardObj = new Board();
-        char[][] board = new char [3][3];
+        char[][] board = new char [10][10];
         char currentSymbol = 'O';
-        board[0][2] = currentSymbol;
-        board[1][1] = currentSymbol;
-        board[2][0] = currentSymbol;
+        int nbOfSymbolsToWin = 3;
+        board[4][5] = currentSymbol;
+        board[3][6] = currentSymbol;
+        board[2][7] = currentSymbol;
+        board[1][8] = currentSymbol;
+        board[0][9] = currentSymbol;
 //        when
-        boolean win = boardObj.checkDiagonal2(board, currentSymbol);
+        boolean win = boardObj.checkDiagonal2(board, currentSymbol,nbOfSymbolsToWin);
 //        then
         Assertions.assertTrue(win);
 
@@ -78,12 +83,13 @@ public class ApplicationTestSuite {
         Board boardObj = new Board();
         char[][] board = new char[3][3];
         char currentSymbol = 'X';
+        int nbSymbolsToWin = 3;
         board[0][2] = currentSymbol;
         board[1][2] = currentSymbol;
         board[2][2] = currentSymbol;
 
 //        when
-        boolean win = boardObj.checkColumns(board, currentSymbol);
+        boolean win = boardObj.checkColumns(board, currentSymbol,nbSymbolsToWin);
 //        then
         Assertions.assertTrue(win);
     }
@@ -91,13 +97,16 @@ public class ApplicationTestSuite {
     void checkDiagonal1withX(){
 //        given
         Board boardObj = new Board();
-        char[][] board = new char [3][3];
+        char[][] board = new char [10][10];
         char currentSymbol = 'X';
-        board[0][0] = currentSymbol;
-        board[1][1] = currentSymbol;
-        board[2][2] = currentSymbol;
+        int nbOfSymbolsToWin = 3;
+        board[0][1] = currentSymbol;
+        board[1][2] = currentSymbol;
+        board[2][3] = currentSymbol;
+        board[3][4] = currentSymbol;
+        board[4][5] = currentSymbol;
 //        when
-        boolean win = boardObj.checkDiagonal1(board, currentSymbol);
+        boolean win = boardObj.checkDiagonal1(board, currentSymbol, nbOfSymbolsToWin);
 //        then
         Assertions.assertTrue(win);
 
@@ -123,12 +132,12 @@ public class ApplicationTestSuite {
 //        when
         boolean winLinesX = boardObj.checkLines(board, currentSymbolX, nbOfSymbolsToWin);
         boolean winLinesO = boardObj.checkLines(board, currentSymbolO, nbOfSymbolsToWin);
-        boolean winColumnsX = boardObj.checkColumns(board, currentSymbolX);
-        boolean winColumnsO = boardObj.checkColumns(board, currentSymbolO);
-        boolean winDiagonal1X = boardObj.checkDiagonal1(board, currentSymbolX);
-        boolean winDiagonal1O = boardObj.checkDiagonal1(board, currentSymbolO);
-        boolean winDiagonal2X = boardObj.checkDiagonal2(board, currentSymbolX);
-        boolean winDiagonal2O = boardObj.checkDiagonal2(board, currentSymbolO);
+        boolean winColumnsX = boardObj.checkColumns(board, currentSymbolX,nbOfSymbolsToWin);
+        boolean winColumnsO = boardObj.checkColumns(board, currentSymbolO, nbOfSymbolsToWin);
+        boolean winDiagonal1X = boardObj.checkDiagonal1(board, currentSymbolX, nbOfSymbolsToWin);
+        boolean winDiagonal1O = boardObj.checkDiagonal1(board, currentSymbolO, nbOfSymbolsToWin);
+        boolean winDiagonal2X = boardObj.checkDiagonal2(board, currentSymbolX, nbOfSymbolsToWin);
+        boolean winDiagonal2O = boardObj.checkDiagonal2(board, currentSymbolO, nbOfSymbolsToWin);
 //        then
         Assertions.assertFalse(winLinesX && winLinesO && winColumnsX && winColumnsO && winDiagonal1X & winDiagonal1O && winDiagonal2X && winDiagonal2O);
     }
@@ -144,7 +153,7 @@ public class ApplicationTestSuite {
         board[line][col] = playerSymbol;
         board[line][col] = playerSymbol;
 //        when & then
-        Assertions.assertThrows(WrongMoveException.class, () -> boardObj.play(board, playerSymbol) );
+        Assertions.assertThrows(WrongMoveException.class, () -> boardObj.correctMove(board, line, col) );
     }
 
 }
