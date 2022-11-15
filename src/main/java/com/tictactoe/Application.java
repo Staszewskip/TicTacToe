@@ -26,8 +26,8 @@ public class Application {
         }
         char[][] board = new char[size][size];
 
-        while (ifContinue && counterMove <= 9) {
-            counterMove++;
+        while (ifContinue) {
+            boardObj.showBoard(board);
             boolean correctPlayerMove = false;
             if (currentSymbol == 'X') {
                 System.out.println("Twoj symbol " + currentSymbol);
@@ -63,9 +63,10 @@ public class Application {
                     boardObj.showBoard(board);
                     System.out.println("Przegrales gre");
                     ifContinue = false;
-                } else if (counterMove == 9) {
+                } else {
                     boardObj.showBoard(board);
                     System.out.println("Remis");
+                    ifContinue = false;
                 }
             }
             currentSymbol = currentSymbol == 'X' ? 'O' : 'X';

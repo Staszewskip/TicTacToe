@@ -1,10 +1,11 @@
 package com.tictactoe;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Board {
     char playerSymbol = 'X';
-    char computerSymbol = 'O';
+
 
     public void showBoard(char[][] board) {
         System.out.print("\t");
@@ -25,12 +26,14 @@ public class Board {
 
     public boolean correctMove(char[][] board, int line, int col) throws WrongMoveException {
         boolean correctMove = board[line][col] == 0;
-        if (!correctMove) {
+        if (!correctMove)
+        {
             throw new WrongMoveException();
         }
         board[line][col] = playerSymbol;
         return true;
     }
+
 
     public boolean playComputer(char[][] board, char computerSymbol, int size) {
         Random random = new Random();
@@ -122,8 +125,8 @@ public class Board {
         int winningCombination = 0;
 
 //prawa dolna część planszy
-        for (int moveOnTheBoard = 0; moveOnTheBoard < board.length ; moveOnTheBoard++) {
-            for (int i = board.length - 1, j = 0; i >= 0; i--,j++) {
+        for (int moveOnTheBoard = 0; moveOnTheBoard <= board.length - nbOfSymbolsToWin; moveOnTheBoard++) {
+            for (int i = board.length - 1, j = 0; i > 0 || j < board.length - 1; i--, j++) {
                 int moveCol = j + moveOnTheBoard;
                 if (board[i][moveCol] == currentSymbol) {
                     winningCombination++;
@@ -138,15 +141,16 @@ public class Board {
         }
 //        lewa górna część planszy
         for (int moveOnTheBoard = 0; moveOnTheBoard <= board.length - nbOfSymbolsToWin; moveOnTheBoard++) {
-            for (int i = board.length - 1,j = 0; i >= board.length - nbOfSymbolsToWin; i--,j++) {
-                int moveCol = j + moveOnTheBoard;
-                if (board[i][moveCol] == currentSymbol) {
+            for (int i = board.length - 1, j = 0; i >= 0; i--, j++) {
+                int moveLine = i - moveOnTheBoard;
+                int moveCol =  moveOnTheBoard - j;
+                if (board[moveLine][moveCol] == currentSymbol) {
                     winningCombination++;
                 }
                 if (winningCombination == nbOfSymbolsToWin) {
                     return true;
                 }
-                if (board[i][moveCol] != currentSymbol) {
+                if (board[moveLine][moveCol] != currentSymbol) {
                     winningCombination = 0;
                 }
             }

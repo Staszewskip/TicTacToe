@@ -47,12 +47,12 @@ public class ApplicationTestSuite {
         Board boardObj = new Board();
         char[][] board = new char [10][10];
         char currentSymbol = 'O';
-        int nbOfSymbolsToWin = 3;
-        board[4][5] = currentSymbol;
-        board[3][6] = currentSymbol;
-        board[2][7] = currentSymbol;
-        board[1][8] = currentSymbol;
-        board[0][9] = currentSymbol;
+        int nbOfSymbolsToWin = 5;
+        board[4][0] = currentSymbol;
+        board[3][1] = currentSymbol;
+        board[2][2] = currentSymbol;
+        board[1][3] = currentSymbol;
+        board[0][4] = currentSymbol;
 //        when
         boolean win = boardObj.checkDiagonal2(board, currentSymbol,nbOfSymbolsToWin);
 //        then
