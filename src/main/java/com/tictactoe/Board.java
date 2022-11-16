@@ -125,8 +125,6 @@ public class Board {
         }
         return false;
     }
-
-
     public boolean checkDiagonal2(char[][] board, char currentSymbol, int nbOfSymbolsToWin) {
         int winningCombination = 0;
 
@@ -149,14 +147,10 @@ public class Board {
             }
         }
 //        lewa górna część planszy
-//        moveBoard: zakres od 0 do 5
+
         for (int moveOnTheBoard = 0; moveOnTheBoard <= board.length - nbOfSymbolsToWin; moveOnTheBoard++) {
             for (int i = board.length - 1, j = 0; i >= 0; i--, j++) {
-////                moveLine - zakres od 9 do 0
-////                j - zakres od 0 do 0+5=5
-////                moveCol - zakres od 0 do 0
                 int moveLine = i - moveOnTheBoard;
-
                 if (moveLine < 0){
                     break;
                 }

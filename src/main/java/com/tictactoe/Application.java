@@ -7,8 +7,10 @@ public class Application {
         Board boardObj = new Board();
         int size = 0;
         int nbOfSymbolsToWin = 0;
+        int maxNbOfMoves = 0;
         char currentSymbol = 'X';
         boolean ifContinue = true;
+        int counterMove = 0;
         boolean correctPlayerMove = false;
         Scanner scan = new Scanner(System.in);
         System.out.println("""
@@ -20,18 +22,20 @@ public class Application {
         if (choice == 1) {
             size = 3;
             nbOfSymbolsToWin = 3;
+            maxNbOfMoves = 9;
+
         } else if (choice == 2) {
             size = 10;
             nbOfSymbolsToWin = 5;
+            maxNbOfMoves = 100;
         }
         char[][] board = new char[size][size];
 
-        while (ifContinue) {
+        while (ifContinue && counterMove <= maxNbOfMoves) {
+            counterMove++;
             boardObj.showBoard(board);
-
             if (currentSymbol == 'X') {
                 System.out.println("Twoj symbol " + currentSymbol);
-                boardObj.showBoard(board);
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Podaj indeks wiersza");
                 int line = scanner.nextInt();
@@ -40,13 +44,13 @@ public class Application {
 
                 try {
                     correctPlayerMove = boardObj.correctMove(board, line, col);
-
                 } catch (WrongMoveException e) {
                     System.out.println("Niepoprawny ruch. Sprobuj ponownie");
+                    correctPlayerMove = false;
                 }
             }
             boolean correctComputerMove = false;
-            if (currentSymbol == 'O') {
+            if (currentSymbol == 'O' && correctPlayerMove) {
                 correctComputerMove = boardObj.playComputer(board, currentSymbol, size);
             }
 
@@ -64,7 +68,7 @@ public class Application {
                     boardObj.showBoard(board);
                     System.out.println("Przegrales gre");
                     ifContinue = false;
-                } else {
+                } else if (counterMove == maxNbOfMoves){
                     boardObj.showBoard(board);
                     System.out.println("Remis");
                     ifContinue = false;
