@@ -34,7 +34,6 @@ public class Board {
         return true;
     }
 
-
     public boolean playComputer(char[][] board, char computerSymbol, int size) {
         Random random = new Random();
         int line = random.nextInt(size);
@@ -89,8 +88,12 @@ public class Board {
 
 //prawa górna część planszy
         for (int moveOnTheBoard = 0; moveOnTheBoard <= board.length - nbOfSymbolsToWin; moveOnTheBoard++) {
+
             for (int i = 0; i < board.length; i++) {
                 int moveCol = i + moveOnTheBoard;
+                if (moveCol >= board.length){
+                    break;
+                }
                 if (board[i][moveCol] == currentSymbol) {
                     winningCombination++;
                 }
@@ -106,6 +109,9 @@ public class Board {
         for (int moveOnTheBoard = 0; moveOnTheBoard <= board.length - nbOfSymbolsToWin; moveOnTheBoard++) {
             for (int i = 0; i < board.length; i++) {
                 int moveLine = i + moveOnTheBoard;
+                if (moveLine >= board.length){
+                    break;
+                }
                 if (board[moveLine][i] == currentSymbol) {
                     winningCombination++;
                 }
@@ -128,6 +134,9 @@ public class Board {
         for (int moveOnTheBoard = 0; moveOnTheBoard <= board.length - nbOfSymbolsToWin; moveOnTheBoard++) {
             for (int i = board.length - 1, j = 0; i > 0 || j < board.length - 1; i--, j++) {
                 int moveCol = j + moveOnTheBoard;
+                if (moveCol >= board.length){
+                    break;
+                }
                 if (board[i][moveCol] == currentSymbol) {
                     winningCombination++;
                 }
@@ -140,17 +149,24 @@ public class Board {
             }
         }
 //        lewa górna część planszy
+//        moveBoard: zakres od 0 do 5
         for (int moveOnTheBoard = 0; moveOnTheBoard <= board.length - nbOfSymbolsToWin; moveOnTheBoard++) {
             for (int i = board.length - 1, j = 0; i >= 0; i--, j++) {
+////                moveLine - zakres od 9 do 0
+////                j - zakres od 0 do 0+5=5
+////                moveCol - zakres od 0 do 0
                 int moveLine = i - moveOnTheBoard;
-                int moveCol =  moveOnTheBoard - j;
-                if (board[moveLine][moveCol] == currentSymbol) {
+
+                if (moveLine < 0){
+                    break;
+                }
+                if (board[moveLine][j] == currentSymbol) {
                     winningCombination++;
                 }
                 if (winningCombination == nbOfSymbolsToWin) {
                     return true;
                 }
-                if (board[moveLine][moveCol] != currentSymbol) {
+                if (board[moveLine][j] != currentSymbol) {
                     winningCombination = 0;
                 }
             }

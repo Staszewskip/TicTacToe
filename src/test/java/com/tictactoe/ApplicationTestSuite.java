@@ -48,11 +48,17 @@ public class ApplicationTestSuite {
         char[][] board = new char [10][10];
         char currentSymbol = 'O';
         int nbOfSymbolsToWin = 5;
-        board[4][0] = currentSymbol;
-        board[3][1] = currentSymbol;
-        board[2][2] = currentSymbol;
-        board[1][3] = currentSymbol;
-        board[0][4] = currentSymbol;
+//        board[4][0] = currentSymbol;
+//        board[3][1] = currentSymbol;
+//        board[2][2] = currentSymbol;
+//        board[1][3] = currentSymbol;
+//        board[0][4] = currentSymbol;
+
+        board[9][5] = currentSymbol;
+        board[8][6] = currentSymbol;
+        board[7][7] = currentSymbol;
+        board[6][8] = currentSymbol;
+        board[5][9] = currentSymbol;
 //        when
         boolean win = boardObj.checkDiagonal2(board, currentSymbol,nbOfSymbolsToWin);
 //        then
@@ -99,12 +105,22 @@ public class ApplicationTestSuite {
         Board boardObj = new Board();
         char[][] board = new char [10][10];
         char currentSymbol = 'X';
-        int nbOfSymbolsToWin = 3;
-        board[0][1] = currentSymbol;
-        board[1][2] = currentSymbol;
-        board[2][3] = currentSymbol;
-        board[3][4] = currentSymbol;
-        board[4][5] = currentSymbol;
+        int nbOfSymbolsToWin = 5;
+//        board[0][1] = currentSymbol;
+//        board[1][2] = currentSymbol;
+//        board[2][3] = currentSymbol;
+//        board[3][4] = currentSymbol;
+//        board[4][5] = currentSymbol;
+//        board[0][5] = currentSymbol;
+//        board[1][6] = currentSymbol;
+//        board[2][7] = currentSymbol;
+//        board[3][8] = currentSymbol;
+//        board[4][9] = currentSymbol;
+        board[5][0] = currentSymbol;
+        board[6][1] = currentSymbol;
+        board[7][2] = currentSymbol;
+        board[8][3] = currentSymbol;
+        board[9][4] = currentSymbol;
 //        when
         boolean win = boardObj.checkDiagonal1(board, currentSymbol, nbOfSymbolsToWin);
 //        then

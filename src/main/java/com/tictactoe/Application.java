@@ -9,7 +9,7 @@ public class Application {
         int nbOfSymbolsToWin = 0;
         char currentSymbol = 'X';
         boolean ifContinue = true;
-        int counterMove = 0;
+        boolean correctPlayerMove = false;
         Scanner scan = new Scanner(System.in);
         System.out.println("""
                 Jaki rozmiar planszy chcesz wybrac?\s
@@ -28,7 +28,7 @@ public class Application {
 
         while (ifContinue) {
             boardObj.showBoard(board);
-            boolean correctPlayerMove = false;
+
             if (currentSymbol == 'X') {
                 System.out.println("Twoj symbol " + currentSymbol);
                 boardObj.showBoard(board);
@@ -40,6 +40,7 @@ public class Application {
 
                 try {
                     correctPlayerMove = boardObj.correctMove(board, line, col);
+
                 } catch (WrongMoveException e) {
                     System.out.println("Niepoprawny ruch. Sprobuj ponownie");
                 }
