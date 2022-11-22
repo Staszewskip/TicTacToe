@@ -132,7 +132,7 @@ public class Board {
         for (int moveOnTheBoard = 0; moveOnTheBoard <= board.length - nbOfSymbolsToWin; moveOnTheBoard++) {
             for (int i = board.length - 1, j = 0; i > 0 || j < board.length - 1; i--, j++) {
                 int moveCol = j + moveOnTheBoard;
-                if (moveCol >= board.length){
+                if (moveCol >= board.length) {
                     break;
                 }
                 if (board[i][moveCol] == currentSymbol) {
@@ -151,7 +151,7 @@ public class Board {
         for (int moveOnTheBoard = 0; moveOnTheBoard <= board.length - nbOfSymbolsToWin; moveOnTheBoard++) {
             for (int i = board.length - 1, j = 0; i >= 0; i--, j++) {
                 int moveLine = i - moveOnTheBoard;
-                if (moveLine < 0){
+                if (moveLine < 0) {
                     break;
                 }
                 if (board[moveLine][j] == currentSymbol) {
